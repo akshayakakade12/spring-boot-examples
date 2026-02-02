@@ -14,11 +14,15 @@ pipeline {
     }
 
     post {
-        failure {
-            echo 'Build failed 💀'
+        always {
+            // This runs no matter what
+            junit 'target/surefire-reports/*.xml'
         }
         success {
             echo 'Build success 🚀'
+        }
+        failure {
+            echo 'Build failed 💀'
         }
     }
 }
