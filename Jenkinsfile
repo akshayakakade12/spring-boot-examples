@@ -2,16 +2,10 @@ pipeline {
     agent any
 
     tools {
-        maven 'Maven'
+        maven 'Maven on Jenkins'
     }
 
     stages {
-        stage('Checkout') {
-            steps {
-                git 'https://github.com/akshayakakade12/spring-boot-examples.git'
-            }
-        }
-
         stage('Build & Test') {
             steps {
                 sh 'mvn clean test'
@@ -20,11 +14,11 @@ pipeline {
     }
 
     post {
-        success {
-            echo 'Build successful 🎉'
-        }
         failure {
             echo 'Build failed 💀'
+        }
+        success {
+            echo 'Build success 🚀'
         }
     }
 }
