@@ -15,7 +15,7 @@ pipeline {
 
     post {
         always {
-            // This runs no matter what
+            // Publish JUnit test results no matter what
             junit 'target/surefire-reports/*.xml'
         }
         success {
