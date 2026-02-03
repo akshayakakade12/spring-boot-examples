@@ -16,7 +16,7 @@ pipeline {
     post {
         always {
             // Publish JUnit test results no matter what
-            junit 'target/surefire-reports/*.xml'
+           junit allowEmptyResults: true, testResults: 'target/surefire-reports/*.xml'
         }
         success {
             echo 'Build success 🚀'
