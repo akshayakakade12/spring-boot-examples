@@ -6,22 +6,27 @@ pipeline {
     }
 
     stages {
+        stage('Checkout') {
+            steps {
+                checkout scm
+            }
+        }
+
         stage('Build & Test') {
             steps {
-                sh 'mvn clean test'
+                dir('spring-boot-2-rest-service-basic') {
+                    sh 'mvn clean test'
+                }
             }
         }
     }
 
     post {
-        always {
-            junit allowEmptyResults: true, testResults: 'target/surefire-reports/*.xml'
-        }
-        success {
-            echo 'Build passed 😎'
-        }
         failure {
             echo 'Build failed 💀'
+        }
+        success {
+            echo 'Build passed 🔥'
         }
     }
 }
