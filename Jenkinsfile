@@ -1,13 +1,27 @@
 pipeline {
     agent any
 
+    tools {
+        maven 'Maven 3.9'
+    }
+
     stages {
-        stage('Find POM') {
+        stage('Build & Test') {
             steps {
-                sh 'pwd'
-                sh 'ls'
-                sh 'find . -name pom.xml'
+                sh 'mvn clean test'
             }
+        }
+    }
+
+    post {
+        always {
+            junit allowEmptyResults: true, testResults: 'target/surefire-reports/*.xml'
+        }
+        success {
+            echo 'Build passed 😎'
+        }
+        failure {
+            echo 'Build failed 💀'
         }
     }
 }
