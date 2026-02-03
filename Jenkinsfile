@@ -6,10 +6,13 @@ pipeline {
     }
 
     stages {
-        stage('Build & Test') {
-            steps {
-                dir('demo/demo') {
-    sh 'mvn clean test'
+        stage('Find POM') {
+    steps {
+        sh 'pwd'
+        sh 'ls'
+        sh 'find . -name pom.xml'
+    }
+}
 }
 
             }
