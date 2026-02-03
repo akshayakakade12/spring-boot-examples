@@ -5,14 +5,15 @@ pipeline {
         maven 'Maven 3.9'
     }
 
-    stages {
+   stages {
         stage('Find POM') {
-    steps {
-        sh 'pwd'
-        sh 'ls'
-        sh 'find . -name pom.xml'
+            steps {
+                sh 'pwd'
+                sh 'ls'
+                sh 'find . -name pom.xml'
+            }
+        }
     }
-}
 }
 
             }
