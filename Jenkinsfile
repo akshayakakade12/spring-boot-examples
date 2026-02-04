@@ -22,11 +22,12 @@ pipeline {
     }
 
     post {
+        success {
+            echo 'Build & tests passed 🎉'
+        }
         failure {
             echo 'Build failed 💀'
         }
-        success {
-            echo 'Build passed 🔥'
-        }
     }
 }
+
